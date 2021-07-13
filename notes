@@ -1,1 +1,32 @@
 
+Implementing Toast in react--->
+
+
+
+
+
+
+
+
+
+
+
+
+Navigation(Navigate to screen) in react--->
+import {useHistory} from 'react-router-dom'
+const history = useHistory();
+history.push('/login')
+
+
+
+
+Uploading Images files to cloudinary--->
+
+
+
+
+
+
+
+
+*we can only store strings in local storage*
