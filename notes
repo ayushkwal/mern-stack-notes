@@ -64,4 +64,33 @@ return(
 
 
 
+adding comment on post------------>
+postModel.js
+add one more type in schema::   (comments will be an array)
+comments = [{
+          text:String,
+          postedBy:{type:ObjectId,ref:"User"}                   //(Make sure to have :: const {ObjectId} = mongoose.schema.Types
+          }]
+
+postRoutes.js or (commentRoutes.js)
+router.put('/comment',requireLogin,(req,res)=>{
+  
+    const comment = {text:req.body.text  ,    postedBy: req.user._id}                       //(requireLogin() returns user details on req.user)
+    Post.findByIdAndUpdate(req.body.postid,{                                                //let suppose Post is mongoose.model of message or post
+      $push:{comments:comment}
+   },{
+   new: true
+   })
+   .populate("comments.postedBy","_id name")
+   .exec((err,res)=>{
+   if(err)   return res.json({error:'Something went wrong'})
+   else      return res.json({data:"Comment added successfully"})
+  })
+    
+    
+
+})
+
+
+
 
