@@ -16,6 +16,7 @@ Navigation(Navigate to screen) in react--->
 import {useHistory} from 'react-router-dom'
 const history = useHistory();
 history.push('/login')
+history.push only works in case of <BrowserRoute>. BrowserRoute makes website like an app.
 
 
 
@@ -30,3 +31,37 @@ Uploading Images files to cloudinary--->
 
 
 *we can only store strings in local storage*
+localstorage.setitem("name","ayush");
+localStorage.getItem("name")
+
+
+
+useContext Hooks Learn (it will help user to go to login when user is not logged in)
+
+Context helps us to send from 1 child to other childs.
+//eg: we are sending value from app.js to componentF.js
+
+app.js
+export const UserContext = React.createContext()
+export const ChannelContext = React.createContext()
+
+<UserContext.Provider value={"ayush"}>
+<ChannelContext.Provider value={"kahndelewal"}>
+<ComponentF />
+<ChannelContext.Provider>
+<UserContext.Provider>
+
+ComponentF.js
+import {useContext} from 'react'
+import {useContext,channeComntext} from '../App.js'
+
+const user = useContext(usercontext);
+const channel = useContext(channelConrtext);
+
+return(
+<div>{user}---{channel}
+)
+
+
+
+
