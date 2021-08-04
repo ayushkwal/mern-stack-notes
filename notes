@@ -94,3 +94,14 @@ router.put('/comment',requireLogin,(req,res)=>{
 
 
 
+automatically scroll down the page when sending new messages----------------------------->
+const scrollRef = useRef()
+Now inside map=>
+<div ref={scrollRef}>
+</div>
+
+
+useEffect(()
+=>{
+scrollRef.current?.scrollIntoView({behavior:'smooth'})
+},[messages])
