@@ -1,0 +1,22 @@
+first we have 2 scenario
+1) deploy node + only build folder      (Here we have to create a fresh new build after every deployment)
+2) we will discuss it further::
+steps::::
+a) change port =  5000||process.env.PORT
+b) if(process.env.NODE_ENV=="production"){
+app.use(express.static('client/build'))
+const path = require('path')
+app.get("*",(req,res)=>{
+  res.sendFile(path.resolve(__dirname,'client','build','index.html'))
+  })
+   
+}
+
+
+
+
+now inside package.json remove test and add :
+"scripts": {
+    "start":"node app.js",
+    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  },
