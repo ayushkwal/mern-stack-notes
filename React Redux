@@ -1,0 +1,8 @@
+npx create-react-app abc
+npm start
+
+npm install redux
+npm install react-redux
+
+//Theory:::::::
+It is like a mangoshaker which has 3 parts : Action(handle-rotatory)  state(juice as output) reducer(How juice is making)
