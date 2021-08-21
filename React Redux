@@ -6,3 +6,6 @@ npm install react-redux
 
 //Theory:::::::
 It is like a mangoshaker which has 3 parts : Action(handle-rotatory)  state(juice as output) reducer(How juice is making)
+src>actions>index.js
+src>reducers>incrementdecrement.js && src>reducers>index.js
+src> store.js
