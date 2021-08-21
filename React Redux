@@ -7,5 +7,63 @@ npm install react-redux
 //Theory:::::::
 It is like a mangoshaker which has 3 parts : Action(handle-rotatory)  state(juice as output) reducer(How juice is making)
 src>actions>index.js
-src>reducers>incrementdecrement.js && src>reducers>index.js
+src>reducers>incrementdecrement.js  ----------> it is one reducer for inc/dec data.
+src>reducers>index.js         ----------------> it is rootreducer where all data is stored.
 src> store.js
+
+//action/index.js   (HEre, we will create handle)
+export const incNumber = (val)=>{  type:"INCREMENT",payload:val }                  OR          export const incNumber = ()=>{return{type:"INCREMENT"} }  
+export const decNumber = ()=>{  type:"DECREMENT" }
+
+//reducers/incrementdecrement.js
+const initialState = 0;
+const changeTheNumber = (state=initialState,state)=>{
+  switch(action.type)
+  {
+  case "INCREMENT": return state+action.payload;
+  case "DECREMENT": return state-1;
+  default:          return state;
+  }
+}
+export default changeTheNumber
+
+//reducer/index.js  ----------> root reducer
+import changeTheNumber from './incrementdecrement.js'
+import {combineReducer} from 'redux'
+const rootreducer = combineReducer({
+  changeTheNumber
+})
+export default rootreducer 
+
+//store.js
+import {createSore} from "redux";
+import rootreducer from './reducer/index';
+const store = createStore(rootreducer);
+export default store;
+
+//very main index.js            //index of react app where <div id="root" /> is written
+import store from './store.js';
+store.subscribe(()=>console.log(store.getState());
+
+//reduxDevtools and open github there and copy that link and inside store.js when returning paste that line also
+import {Provider} from 'react-redux'
+<Provider store={store}>
+App
+</Provider>
+
+//Now as we know, that this index.js is sender therefore someone is receiver also.. So, App.js is consumer/receiver/accepter
+import {useSelector,useDispatch} from 'react-redux'
+import {incNum,decNum} from "./action/index.js"
+const App = ()=> {
+const myState = useSelector((state)=>state.changeTheNumber)--------------------------------------
+const dispatch = useDispatch()                                                                  |
+blahhhhhhhh......                                                                               |
+                                                                                                |
+return (                                                                                        |
+                                                                                                |
+                                                                                                |
+onClick={()=>dispatch(incNum(30))}   value={myState}  <------------------------------------------
+
+)
+  }
+
